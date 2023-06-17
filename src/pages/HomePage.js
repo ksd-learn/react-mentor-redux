@@ -1,5 +1,5 @@
 export const HomePage = () => {
     return (
-        <p>Welcom to events App</p>
+        <h2>Welcome to users App</h2>
     )
 }
