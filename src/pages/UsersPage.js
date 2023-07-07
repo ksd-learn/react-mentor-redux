@@ -1,17 +1,22 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers } from '../redux/users/operations';
-import { selectUsers } from '../redux/users/selectorUsers';
+import { selectUsers} from '../redux/users/selectorUsers';
 
 export const UsersPage = () => {
 
     const users = useSelector(selectUsers);
     const dispatch = useDispatch();
-    console.log(users);
+    const navigate = useNavigate();
+
+    const addUser = () => {
+        navigate("/users/add", { replace: true });
+    }
     
     useEffect(() => {
-        dispatch(fetchUsers())
+        dispatch(fetchUsers());
+        
     }, [dispatch]);
     
     return (
@@ -26,6 +31,10 @@ export const UsersPage = () => {
                 })}
 
             </ul>
+
+            <button onClick={addUser}>Add user</button>
+
+            {/* <Link to='add'>Add user</Link> */}
         </>
     )
 }

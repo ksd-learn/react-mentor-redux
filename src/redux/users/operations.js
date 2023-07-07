@@ -26,3 +26,27 @@ export const fetchOne = createAsyncThunk(
         }
     }
 )
+
+export const deletUser = createAsyncThunk(
+    'usersDelet',
+        async (id, thunkAPI) => {
+        try {
+            await axios.delete(`/users/${id}`);
+            return id;
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e.message);
+        }
+    }
+)
+
+export const addUser = createAsyncThunk(
+    'usersAdd',
+        async (data, thunkAPI) => {
+        try {
+            const response = await axios.post(`/users`, data);
+            return response.data;
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e.message);
+        }
+    }
+)
